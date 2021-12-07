@@ -1,0 +1,300 @@
+/* card.style.width = "auto";
+card.style.height = "12rem";
+card.style.borderRadius = "10px" */
+
+body {
+  background-image: url("./images/background2.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden; /* Ocultar scrollbar horizontal en las animaciones */
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.modal-backdrop {
+  z-index: -1 !important;
+  background-color: #000000 !important;
+}
+
+/* ---- SPINNER ---- */
+
+.spinner {
+  color: #eef36a !important;
+}
+
+/* ----------------- */
+
+/* NAVBAR */
+
+nav {
+  display: none;
+}
+
+nav.paginacion {
+  display: block;
+  position: static;
+  margin-top: 2em;
+}
+
+.navbar-link {
+  text-align: center;
+  width: 150px;
+  margin-top: 1em !important;
+  border-left: 1px solid #eef36a;
+  text-decoration: none;
+  color: #bebebe !important;
+  border-top: 1px solid #434343;
+  border-bottom: 1px solid #434343;
+}
+
+.navbar-link.last-element {
+  border-right: 1px solid #eef36a;
+}
+
+.navbar-link:hover {
+  border-top: 1px solid #eef36a;
+  border-bottom: 1px solid #eef36a;
+}
+
+.navbar-link.last-element {
+  border-right: 1px solid #eef36a;
+}
+
+/* ------------- LOGIN ----------------- */
+
+#formulario {
+  margin-top: 100px;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+#formContent {
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  text-align: center;
+}
+
+input[type=button], input[type=submit], input[type=reset]  {
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+input[type=text], input[type=password] {
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 19px;
+  margin: 5px;
+  width: 100%;
+}
+
+input[type=text], input[type=password]{
+  background-color: #fdffc4;
+  border-bottom: 2px solid #322829;
+  border:1px solid #000000;
+  
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid #000000;
+  outline: none;
+}
+
+.grupo-botones-login {
+  width: 400px;
+  margin-top: 1em;
+}
+
+.btn-login, .btn-nuevo-usuario {
+  text-align: center;
+  width: 150px;
+  margin-top: 1em !important;
+  border-left: 1px solid #eef36a;
+  border-right: 1px solid #eef36a;
+  text-decoration: none;
+  color: #bebebe !important;
+  border-top: 1px solid #434343;
+  border-bottom: 1px solid #434343;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn-login:hover, .btn-nuevo-usuario:hover {
+  border-top: 1px solid #eef36a;
+  border-bottom: 1px solid #eef36a;
+}
+
+/* ------------- FIN LOGIN ----------------- */
+
+
+
+#boton { /* By ALEJANDRO */
+  margin-top: 20px;
+}
+
+#icon {
+  width:60%;
+}
+
+#customerscard {
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  border: solid 1px rgb(31, 31, 31);
+}
+
+
+#activityCard {
+  cursor: pointer;
+  margin: 15px;
+  background-color: transparent !important;
+  border: 1px solid #EEF36A;
+  box-shadow: #EEF36A 0px 10px 20px, #EEF36A 0px 6px 6px;
+  color: #EEF36A;
+}
+
+li.list-group-item.activites {
+  background-color: red !important;
+}
+
+.activities-title {
+  color: #EEF36A;
+  font-weight:400 !important;
+}
+
+.activities {
+  background-color: #f7faa8 !important;
+}
+
+#homecard {
+  border: solid 1px rgb(197, 197, 197);
+  margin: 25px;
+  width: 12rem;
+  height: 12rem;
+}
+
+#customer {
+  height: auto;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+img {
+  height: auto;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+/* Página actividad detallada */
+
+#map {
+    position: relative;
+    width: inherit;
+    height: inherit;
+}
+
+#mapcontainer {
+    position: relative;
+    height: 700px;
+    width: 100%;
+
+}
+
+/* Customers Page */
+
+thead > tr > th {
+  font-weight: 400;
+  color: rgb(255, 150, 51) !important;
+}
+
+tbody > tr > th {
+  font-weight: 400; /* Iván */
+}
+
+#customerTitle {
+  color: #eef36a;
+}
+
+
+/* Acitivities Page */
+
+
+.btn.btn-dark.pagination-button {
+  width: 45px;
+  color: #383838 ;
+  border: 1px solid #383838;
+  margin: 4px;
+  padding: .25em;
+  background-color: transparent;
+
+}
+
+.btn.btn-dark.pagination-button.active {
+  width: 45px;
+  color: #EEF36A ;
+  border: 1px solid #3f3047;
+  margin: 4px;
+  padding: .25em;
+  background-color: #383838;
+  border-radius: 5px;
+
+}
+
+/* Activity Details Page */
+
+#pieChart {
+  display: block !important;
+  width: 400px !important;
+  height: 400px !important;
+}
+
+
+/* ---------- NUEVO CLIENTE ---------- */
+
+.nuevo-cliente-label, .titulo-nuevo-cliente {
+  color: #EEF36A;
+}
+
+/* ----------------------------------- */
+
+/* ----------- PAGINA ERROR ----------- */
+.titulo-pagina-error {
+  color: #eef36a;
+}
+
+.alert-danger {
+  margin: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ----------- GRAFICO -------------- */
+
+#myChart {
+  padding: 20px;
+  background-color: #fdffc1;
+}
