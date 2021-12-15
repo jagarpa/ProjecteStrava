@@ -1,141 +1,202 @@
-import { CustomersController } from "../controller/Customers_controller.js";
 import { View } from "./View.js"
+import { fromEvent } from 'rxjs'
+import { Animations_control } from "../helpers/Animations_control.js"
+import { convertirObjeto } from "../functions.js"
+import { Delete } from "../components/Delete.js"
+import { router } from "../router/router.js"
 export { Customers_view }
 
 class Customers_view extends View {
 
-    constructor(data) {
-        super()
-        this.data = data;
-    }
+  constructor(data) {
+    super()
+    this.data = data;
+    this.animacion = new Animations_control();
+  }
 
-    renderView() {
+  renderView() {
+    window.document.title = "Listado de clientes"
+    this.animacion.agregarAnimacionSalida();
+    setTimeout(() => {
+      //Animaciones 
+      this.animacion.eliminarAnimacionSalida();
+      this.animacion.agregarAnimacionEntrada();
 
-        app.container.classList.add("animate__animated", "animate__backOutRight")
-        setTimeout(() => {
-          let customers_array = []
-          for (let index = 0; index < this.data.length; index++) {
-            customers_array[index] = this.data[index][1]
-          }
-          console.log(customers_array);
-  
-          app.container.classList.remove("animate__animated", "animate__backOutRight")
-          app.container.classList.add("animate__animated", "animate__backInLeft")
-          app.container.innerHTML = "";
-      
-          let leftcol;
-          let rightcol;
-    
-          app.container.classList.add("d-flex", "justify-content-center")
-      
-          /* creating row and col */
-          let row = document.createElement("div")
-          row.classList.add("row", "mt-4")
-          app.container.append(row)
-          leftcol = document.createElement("div")
-          leftcol.classList.add("col", "text-end")
-          leftcol.id = "leftCol";
-      
-          row.append(leftcol);
-          rightcol = document.createElement("div")
-          rightcol.classList = "col"
-          rightcol.id = "rightCol";
-          row.append(rightcol);
-      
-          let title = document.createElement("h1")
-          title.classList.add("display-4", "mt-4")
-          title.id = "customerTitle";
-          title.innerText = "Clientes con entrenamiento activo"
-          leftcol.append(title);
+      //Reset del container principal
+      app.container.innerHTML = "";
+      app.container.classList.add("d-flex", "justify-content-center")
 
-          /* creating bootstrap accordion */
-          let accordion = document.createElement("div");
-          accordion.classList.add("accordion", "accordion-flush", "mt-5", "shadow", "mb-5", "bg-body", "rounded")
-          accordion.id = "accordionFlush";
-          rightcol.append(accordion);
-          console.log("PASA EL ACORDEON")
-          let cont = 1;
-          customers_array.map((element) => {
-            console.log(element);
-            let accordionItem = document.createElement("div");
-            accordion.append(accordionItem);
-      
-            let accordionHeader = document.createElement("h3");
-            accordionHeader.id = "flush-heading" + cont;
-            accordionItem.append(accordionHeader);
-      
-            let button = document.createElement("button");
-            button.classList.add("accordion-button", "collapsed", "fs-5");
-            button.type = "button";
-            button.setAttribute("data-bs-toggle", "collapse");
-            button.setAttribute("data-bs-target", "#flush-collapse" + cont)
-            button.ariaExpanded = "false";
-            button.setAttribute("aria-controls", "flush-collapse" + cont);
-            button.innerHTML = element.name;
-            accordionHeader.append(button);
-      
-            let accordionPlaceholder = document.createElement("div");
-            accordionPlaceholder.id = "flush-collapse" + cont;
-            accordionPlaceholder.classList.add("accordion-collapse", "collapse")
-            accordionPlaceholder.setAttribute("aria-labelledby", "flush-heading" + cont)
-            accordionPlaceholder.setAttribute("data-bs-parent", "#accordionFlush")
-      
-            accordionItem.append(accordionPlaceholder);
-      
-            let accordionBody = document.createElement("div");
-            accordionBody.classList.add("accordion-body", "justify-content-between");
-            accordionPlaceholder.append(accordionBody);
-      
-            button = document.createElement("a");
-            button.classList.add("btn", "btn-outline-dark", "m-2")
-            button.innerHTML = "Actividades"
-            button.href = "#/actividades"
-            button.addEventListener("click", ()=> {
-              localStorage.setItem("User", JSON.stringify(element))
-            })
-            accordionBody.append(button);
-      
-            button = document.createElement("a");
-            button.classList.add("btn", "btn-outline-dark", "m-2")
-            button.innerHTML = "Datos del cliente"
-            accordionBody.append(button);
-            button.href = "#/datoscliente"
-            button.addEventListener("click", () => {
-              localStorage.setItem("User", JSON.stringify(element))
-            })
-      
-            button = document.createElement("button");
-            button.classList.add("btn", "btn-outline-danger", "m-2")
-            button.innerHTML = "Eliminar cliente"
-            accordionBody.append(button);
-            button.addEventListener("click", () => {
-              alert(element.name)
-            })
+      //Creación de la página
+      const fila = this.crearfila();
+      const colIzquierda = this.crearcolIzquierda(fila)
+      const colDerecha = this.crearcolDerecha(fila)
+      const title = this.crearTitle(colIzquierda);
+      const accordion = this.crearAccordion(colDerecha);
+      const botonNuevoCliente = this.crearBotonNuevoCliente(colDerecha)
+      const customers = convertirObjeto(this.data);
 
-            button = document.createElement("button");
-            button.classList.add("btn", "btn-outline-danger", "m-2")
-            button.innerHTML = "Editar"
-            accordionBody.append(button);
-            button.href = "#/editarcliente"
-            button.addEventListener("click", () => {
-              localStorage.setItem("User", JSON.stringify(element))
-            })
+      //Uso de map para crear todos los clientes. 
+      //El index se necesita para poder indexar cada cliente para el comportamiento del acordeón
+      customers.map((element, index) => {
+        const accordionItem = this.crearAccordionItem(accordion);
+        const accordionHeader = this.crearAccordionHeader(accordionItem, index);
+        const accordionButton = this.crearAccordionButton(accordionHeader, element, index);
+        const accordionPlaceHolder = this.crearAccordionPlaceHolder(accordionItem, index);
+        const accordionBody = this.crearAccordionBody(accordionPlaceHolder);
+        const botonActividades = this.crearBotonActividades(accordionBody, element);
+        const botonDatos= this.crearBotonDatos(accordionBody, element);
+        const botonEditar = this.crearBotonEditar(accordionBody, element);
+        const botonEliminar = this.crearBotonEliminar(accordionBody, element, index); 
+      })
+    }, 1000);
+  }
 
-            cont++;
-        })
-        
-        let boton = document.createElement("a")
-        boton.classList.add("btn-login")
-        boton.innerHTML = "Añadir un nuevo cliente"
-        boton.href = "#/nuevocliente"
-        rightcol.append(boton)
-    
-        /* Creación de gráfico */
+  //Funciones para crear elementos principales
+  crearfila() {
+    let fila = document.createElement("div")
+    fila.classList.add("row", "mt-4")
+    app.container.append(fila)
+    return fila;
+  }
 
+  crearcolDerecha(fila) {
+    let colDerecha;
+    colDerecha = document.createElement("div")
+    colDerecha.classList.add("col", "text-start")
+    colDerecha.id = "colDerecha";
+    fila.append(colDerecha);
+    return colDerecha;
+  }
 
+  crearcolIzquierda(fila) {
+    let colIzquierda;
+    colIzquierda = document.createElement("div")
+    colIzquierda.classList.add("col", "text-end")
+    colIzquierda.id = "colIzquierda";
+    fila.append(colIzquierda);
+    return colIzquierda;
+  }
 
-        }, 1000);  
-    }
+  crearTitle(colIzquierda) {
+    let title = document.createElement("h1")
+    title.classList.add("display-4", "mt-4")
+    title.id = "customerTitle";
+    title.innerText = "Clientes con entrenamiento activo"
+    colIzquierda.append(title);
+    return title;
+  }
 
-      
+  crearAccordion(colDerecha) {
+    let accordion = document.createElement("div");
+      accordion.classList.add("accordion", "accordion-flush", "mt-5", "shadow", "mb-5", "bg-body", "rounded")
+      accordion.id = "accordionFlush";
+      colDerecha.append(accordion);
+      return accordion;
+  }
+
+  //Funciones para crear elementos específicos del acordeón
+
+  crearAccordionItem(accordion) {
+    let accordionItem = document.createElement("div");
+    accordion.append(accordionItem);
+    return accordionItem;
+  }
+
+  crearAccordionHeader(accordionItem, index) {
+    let accordionHeader = document.createElement("h3");
+    accordionHeader.id = "flush-heading" + index;
+    accordionItem.append(accordionHeader);
+    return accordionHeader;
+  }
+
+  crearAccordionButton(accordionHeader, element, index) {
+    let button = document.createElement("button");
+    button.classList.add("accordion-button", "collapsed", "fs-5");
+    button.type = "button";
+    button.setAttribute("data-bs-toggle", "collapse");
+    button.setAttribute("data-bs-target", "#flush-collapse" + index)
+    button.ariaExpanded = "false";
+    button.setAttribute("aria-controls", "flush-collapse" + index);
+    button.innerHTML = element.name;
+    accordionHeader.append(button);
+  }
+
+  crearAccordionPlaceHolder(accordionItem, index) {
+    let accordionPlaceholder = document.createElement("div");
+    accordionPlaceholder.id = "flush-collapse" + index;
+    accordionPlaceholder.classList.add("accordion-collapse", "collapse")
+    accordionPlaceholder.setAttribute("aria-labelledby", "flush-heading" + index)
+    accordionPlaceholder.setAttribute("data-bs-parent", "#accordionFlush")
+    accordionItem.append(accordionPlaceholder);
+    return accordionPlaceholder;
+  }
+
+  crearAccordionBody(accordionPlaceHolder) {
+    let accordionBody = document.createElement("div");
+    accordionBody.classList.add("accordion-body", "justify-content-between");
+    accordionPlaceHolder.append(accordionBody);
+    return accordionBody;
+  }
+
+  crearBotonActividades(accordionBody, element) {
+    let botonActividades = document.createElement("a");
+    botonActividades.classList.add("btn-login", "m-2")
+    botonActividades.innerHTML = "Actividades"
+    botonActividades.href = "#/actividades"
+    const obsActividades = fromEvent(botonActividades, 'click')
+    obsActividades.subscribe(() => {
+      localStorage.setItem("User", JSON.stringify(element))
+    })
+    accordionBody.append(botonActividades);
+  }
+
+  crearBotonDatos(accordionBody, element) {
+    let buttonDatosCliente = document.createElement("a");
+    buttonDatosCliente.classList.add("btn-login", "m-2")
+    buttonDatosCliente.innerHTML = "Datos del cliente"
+    buttonDatosCliente.href = "#/datoscliente"
+    const obsDatosCliente = fromEvent(buttonDatosCliente, 'click')
+    obsDatosCliente.subscribe(() => {
+      localStorage.setItem("User", JSON.stringify(element))
+    })
+    accordionBody.append(buttonDatosCliente);
+  }
+
+  crearBotonEditar(accordionBody, element) {
+    let buttonEditar = document.createElement("a");
+    buttonEditar.classList.add("btn-editar", "m-2")
+    buttonEditar.innerHTML = "Editar"
+    buttonEditar.href = "#/editarcliente"
+    const obsEditar = fromEvent(buttonEditar, 'click')
+    obsEditar.subscribe(() => {
+      localStorage.setItem("User", JSON.stringify(element))
+    })
+    accordionBody.append(buttonEditar);
+  }
+
+  crearBotonEliminar(accordionBody, element, index) {
+
+    let buttonEliminar = document.createElement("a");
+        buttonEliminar.classList.add("btn-eliminar", "m-2")
+        buttonEliminar.innerHTML = "Eliminar cliente"
+        accordionBody.append(buttonEliminar);
+        const obsEliminar = fromEvent(buttonEliminar, 'click')
+        obsEliminar.subscribe(() => {
+          const id = this.data[index][0]
+          const borrar = new Delete();
+          borrar.delete(id);
+          setTimeout(() => {
+            router("#/customers")
+          }, 1000);
+        })   
+  }
+
+  crearBotonNuevoCliente(colDerecha) {
+    let boton = document.createElement("a")
+    boton.classList.add("btn-login")
+    boton.innerHTML = "Añadir un nuevo cliente"
+    boton.href = "#/nuevocliente"
+    colDerecha.append(boton)
+  }
+
 }

@@ -1,10 +1,10 @@
 //Decodificar la información polyline obtenida de la actividad
 export function decodePolyline(encoded) {
-  var points = []
-  var index = 0, len = encoded.length;
-  var lat = 0, lng = 0;
+  let points = []
+  let index = 0, len = encoded.length;
+  let lat = 0, lng = 0;
   while (index < len) {
-    var b, shift = 0, result = 0;
+    let b, shift = 0, result = 0;
     do {
 
       b = encoded.charAt(index++).charCodeAt(0) - 63;
@@ -12,7 +12,7 @@ export function decodePolyline(encoded) {
       shift += 5;
     } while (b >= 0x20);
 
-    var dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+    let dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
     lat += dlat;
     shift = 0;
     result = 0;
@@ -21,12 +21,13 @@ export function decodePolyline(encoded) {
       result |= (b & 0x1f) << shift;
       shift += 5;
     } while (b >= 0x20);
-    var dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+    let dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
     lng += dlng;
 
     points.push({ latitude: (lat / 1E5), longitude: (lng / 1E5) })
 
   }
+  console.log(points)
   return points
 };
 
@@ -44,11 +45,11 @@ export function coordinatesFilter(coordinates) {
 
 //Convertir segundos a formato HORAS:MINUTOS:SEGUNDOS
 export function secondsToString(seconds) {
-  var hour = Math.floor(seconds / 3600);
+  let hour = Math.floor(seconds / 3600);
   hour = (hour < 10) ? '0' + hour : hour;
-  var minute = Math.floor((seconds / 60) % 60);
+  let minute = Math.floor((seconds / 60) % 60);
   minute = (minute < 10) ? '0' + minute : minute;
-  var second = seconds % 60;
+  let second = seconds % 60;
   second = (second < 10) ? '0' + second : second;
   return hour + ':' + minute + ':' + second;
 }
@@ -75,4 +76,14 @@ export function loadSpinner() {
     let span = document.createElement("span");
     span.className = "visually-hidden";
     spinnerElement.append(span);
+}
+
+//Filtrar json de clientes
+export function convertirObjeto(data) {
+  let array = Object.entries(data)
+  let customers_array = []
+      for (let index = 0; index < array.length; index++) {
+        customers_array[index] = array[index][1]
+      }
+      return customers_array;
 }

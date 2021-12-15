@@ -1,9 +1,10 @@
 import { getAuth, signOut } from "firebase/auth";
-import { Login } from "../components/Login.js";
+import { router } from "../router/router.js";
+import { ErrorPage } from "./ErrorPage.js";
 export { SignOut }
 
+//Uso de clases
 class SignOut {
-
     constructor() { 
         this.signout();
     }
@@ -11,13 +12,11 @@ class SignOut {
     signout() {
         const auth = getAuth();
         signOut(auth).then(() => {
-            console.log("Ha cerrado la sesión")
             localStorage.clear();
-            window.location.hash = ""
-            new Login()
+            window.location.hash = "";
+            router('#/login')
         }).catch((error) => {
-            console.log(error)
+            new ErrorPage("Error al cerrar sesión", error)
         });
     }
-
 }

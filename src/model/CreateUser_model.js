@@ -18,7 +18,6 @@ class CreateUser_model extends Model {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                alert("Usuario creado OK")
             })
             .catch((error) => {
                 new ErrorPage(error.code, error.message)

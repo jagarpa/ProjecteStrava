@@ -20,6 +20,15 @@ a {
   background-color: #000000 !important;
 }
 
+/* ---- FS & DISPLAY */
+.display-4 {
+  color: #eef36a !important;
+}
+
+.fs-3 {
+  color: #eef36a !important;
+}
+
 /* ---- SPINNER ---- */
 
 .spinner {
@@ -63,6 +72,7 @@ nav.paginacion {
 .navbar-link.last-element {
   border-right: 1px solid #eef36a;
 }
+
 
 /* ------------- LOGIN ----------------- */
 
@@ -123,7 +133,10 @@ input[type=text]:focus, input[type=password]:focus {
   margin-top: 1em;
 }
 
-.btn-login, .btn-nuevo-usuario {
+
+/* ----------------- BOTONES ------------------ */
+
+.btn-login, .btn-nuevo-usuario, .btn-editar, .btn-eliminar {
   text-align: center;
   width: 150px;
   margin-top: 1em !important;
@@ -137,18 +150,37 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
 }
 
-.btn-login:hover, .btn-nuevo-usuario:hover {
+.btn-editar, .btn-eliminar  {
+  width: 100px;
+}
+
+.btn-eliminar {
+  border-left: 1px solid #ff0000;
+  border-right: 1px solid #ff0000;
+}
+
+.btn-editar {
+  border-left: 1px solid #00eeff;
+  border-right: 1px solid #00eeff;
+}
+
+.btn-login:hover, .btn-nuevo-usuario:hover,  .btn-editar:hover, .btn-eliminar:hover {
   border-top: 1px solid #eef36a;
   border-bottom: 1px solid #eef36a;
 }
 
-/* ------------- FIN LOGIN ----------------- */
-
-
-
-#boton { /* By ALEJANDRO */
-  margin-top: 20px;
+.btn-editar:hover {
+  border-top: 1px solid #00eeff;
+  border-bottom: 1px solid #00eeff;
 }
+
+.btn-eliminar:hover {
+  border-top: 1px solid #ff0000;
+  border-bottom: 1px solid #ff0000;
+}
+
+
+
 
 #icon {
   width:60%;
@@ -161,7 +193,6 @@ input[type=text]:focus, input[type=password]:focus {
   border-radius: 10px;
   border: solid 1px rgb(31, 31, 31);
 }
-
 
 #activityCard {
   cursor: pointer;
@@ -209,6 +240,7 @@ img {
   border-radius: 10px;
 }
 
+
 /* Página actividad detallada */
 
 #map {
@@ -223,6 +255,7 @@ img {
     width: 100%;
 
 }
+
 
 /* Customers Page */
 
@@ -239,24 +272,49 @@ tbody > tr > th {
   color: #eef36a;
 }
 
+.accordion-button {
+  text-align: center !important;
+  background-color: #434343 !important;
+  color: #f8fac1 !important;
+  margin: 0;
+  border-bottom: 1px solid #eef36a !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+
+#accordionFlush {
+  background-color: #434343 !important;
+  border: 1px solid #EEF36A;
+  padding: 10px;
+  text-align: center;
+}
+
+.accordion-button::after, .accordion-button:not(.collapsed)::after {
+  background-image: none !important;
+}
+
+
 
 /* Acitivities Page */
 
-
 .btn.btn-dark.pagination-button {
   width: 45px;
-  color: #383838 ;
+  color: #EEF36A ;
   border: 1px solid #383838;
   margin: 4px;
   padding: .25em;
   background-color: transparent;
+  border-color: #363806;
 
 }
 
 .btn.btn-dark.pagination-button.active {
   width: 45px;
   color: #EEF36A ;
-  border: 1px solid #3f3047;
+  border-color: #EEF36A;
+  border: 1px solid;
   margin: 4px;
   padding: .25em;
   background-color: #383838;
@@ -279,7 +337,6 @@ tbody > tr > th {
   color: #EEF36A;
 }
 
-/* ----------------------------------- */
 
 /* ----------- PAGINA ERROR ----------- */
 .titulo-pagina-error {
@@ -292,9 +349,19 @@ tbody > tr > th {
   text-align: center;
 }
 
+/* --------------- PAGINA DATOS CLIENTE --------------- */
+
+.list-group-item {
+  background-color: #f9fadb !important;
+}
+
 /* ----------- GRAFICO -------------- */
 
 #myChart {
   padding: 20px;
-  background-color: #fdffc1;
+  background-color: #f9fadb;
+  border-radius: 5px;
 }
+
+
+/* -------------------------------- */

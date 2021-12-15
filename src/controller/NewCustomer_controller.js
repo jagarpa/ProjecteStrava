@@ -14,13 +14,13 @@ class NewCustomer_controller extends Controller {
     async getModel() {
         let customerModel = new NewCustomer_model();
         this.data = await customerModel.getCustomers()
-        console.log(this.data)
         this.getView()
     }
 
-    setModel(item) {
+    async setModel(item) {
         let customerModel = new NewCustomer_model();
-        customerModel.setCustomer(item)
+        const prueba = await customerModel.setCustomer(item)
+        return prueba;
     }
 
     getView() {

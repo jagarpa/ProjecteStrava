@@ -1,4 +1,5 @@
 
+import { Animations_control } from "../helpers/Animations_control.js";
 import { View } from "./View.js"
 export { CreateUser_view }
 
@@ -6,16 +7,18 @@ class CreateUser_view extends View {
 
     constructor(data) {
         super()
+        this.animacion = new Animations_control();
         this.data = data;
     }
 
     renderView() {
 
-        app.container.classList.add("animate__animated", "animate__backOutRight")
+        this.animacion.agregarAnimacionSalida();
+        
         setTimeout(() => {
 
-            app.container.classList.remove("animate__animated", "animate__backOutRight")
-            app.container.classList.add("animate__animated", "animate__backInLeft")
+            this.animacion.eliminarAnimacionSalida()
+            this.animacion.agregarAnimacionEntrada();
             app.container.innerHTML = "";
 
             app.container.innerHTML = `

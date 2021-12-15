@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { Login } from "../components/Login.js";
 import { SignOut } from "../components/SignOut.js";
+import { TestPage } from "../components/TestPage.js";
 import { Activities_controller } from "../controller/Activities_controller.js";
 import { ActivityDetails_controller } from "../controller/ActivityDetails_controller.js";
 import { CustomerData_controller } from "../controller/CustomerData_controller.js";
@@ -16,6 +17,7 @@ function router(route) {
 
     let options = {
         "#/login": ()=> new Login(),
+        "#/test":()=> new TestPage(),
         "#/principal": ()=> new FrontPage_controller(),
         "#/customers": ()=> new Customers_controller(),
         "#/actividades": ()=> new Activities_controller(),

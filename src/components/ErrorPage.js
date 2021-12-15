@@ -2,6 +2,7 @@ import { router } from "../router/router";
 
 export { ErrorPage }
 
+//Uso de clases
 class ErrorPage {
 
     constructor(error, message){
@@ -11,6 +12,7 @@ class ErrorPage {
     }
     
     renderView() {
+        window.document.title = "Error"
         app.container.innerHTML = "";
         app.container.innerHTML =
         ` <div class="fadeInDown d-flex justify-content-center align-items-center flex-column">
