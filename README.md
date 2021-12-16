@@ -101,6 +101,9 @@ Además se utiliza la **API de MapBox** para la visualización de la actividad e
 
 Si pulsamos "atras", el navegador nos redirigirá al panel de actividades.
 
+### Errores
+Cada vez que un Try/Catch no se complete, se generará una nueva página de "error", donde nos mostrará el código del error y un mensaje.
+  
 ### Cerrar sesión
 Se destruye la sesión y se redirige al usuario a la página de login.
 
