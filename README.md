@@ -1,4 +1,4 @@
-# Descripcion
+# Descripción
 Se trata de una aplicación la cual permita a un entrenador personal poder realizar un seguimiento de las actividades de sus clientes utilizando la app deportiva Strava.
 
 # Librerias y frameworks utilizados
