@@ -27,7 +27,6 @@ export function decodePolyline(encoded) {
     points.push({ latitude: (lat / 1E5), longitude: (lng / 1E5) })
 
   }
-  console.log(points)
   return points
 };
 

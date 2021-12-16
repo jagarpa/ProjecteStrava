@@ -3,12 +3,13 @@ import { router } from "../router/router.js";
 import { ErrorPage } from "./ErrorPage.js";
 export { SignOut }
 
-//Uso de clases
+//MVC
 class SignOut {
     constructor() { 
         this.signout();
     }
-
+    //LocalStorage (Clear)
+    //API REST (Firebase)
     signout() {
         const auth = getAuth();
         signOut(auth).then(() => {

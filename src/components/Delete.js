@@ -1,7 +1,7 @@
 import { ErrorPage } from "./ErrorPage";
 export { Delete }
 
-//Uso de clases
+//MVC
 class Delete {
 
     constructor() { 
@@ -10,6 +10,7 @@ class Delete {
     }
     //API REST
     //Firebase
+    //Fetch
     async delete(id) {
         const idToken = this.token._tokenResponse.idToken
         try {

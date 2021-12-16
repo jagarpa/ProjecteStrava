@@ -1,7 +1,7 @@
 import { View } from "./View.js"
 import { fromEvent } from 'rxjs'
 import { Animations_control } from "../helpers/Animations_control.js"
-import { convertirObjeto } from "../functions.js"
+import { convertirObjeto } from "../helpers/functions.js"
 import { Delete } from "../components/Delete.js"
 import { router } from "../router/router.js"
 export { Customers_view }
@@ -58,7 +58,7 @@ class Customers_view extends View {
     app.container.append(fila)
     return fila;
   }
-
+  //Closures
   crearcolDerecha(fila) {
     let colDerecha;
     colDerecha = document.createElement("div")

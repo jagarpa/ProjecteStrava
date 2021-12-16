@@ -1,7 +1,6 @@
 import { View } from "./View.js"
 import Chart from 'chart.js/auto';
 import { Animations_control } from "../helpers/Animations_control.js";
-import { fromEvent } from 'rxjs'
 export { CustomerData_view }
 
 class CustomerData_view extends View {
@@ -26,7 +25,6 @@ class CustomerData_view extends View {
                 this.animacion.agregarAnimacionEntrada();
                 app.container.innerHTML = "";
                 app.container.classList.remove("d-flex", "justify-content-center")
-                console.log(this.activities)
 
                 let divPrincipal = document.createElement("div")
                 divPrincipal.classList.add("row", "mt-4")

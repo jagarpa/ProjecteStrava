@@ -46,7 +46,7 @@ class NewCustomer_view extends View {
             const observableRefresh = fromEvent(refresh, "keyup")
             const observableRoad = fromEvent(road, "keyup")
             const observableBtt = fromEvent(btt, "keyup")
-
+            //Programació reactiva
             observableNombre.subscribe(() => {
                 if (isNaN(nombre.value)) {
                     this.validarCampo(nombre, errorNombre, true)
@@ -103,10 +103,11 @@ class NewCustomer_view extends View {
 
             //Botones de Confirmar / No añadir
             const botonesInferior = this.crearDivInferior();
-
+            
             const botonSi = this.crearBotonSi(botonesInferior);
             const observableSi = fromEvent(botonSi, "click")
             observableSi.subscribe(() => {
+                //Objectes literals
                 const item = { "client_id": id.value, "client_secret": secret.value, "equipment": { "btt": btt.value, "road": road.value }, "name": nombre.value, "refresh_token": refresh.value }
                 const controller = new NewCustomer_controller()
                 try {
@@ -122,7 +123,8 @@ class NewCustomer_view extends View {
                     new ErrorPage(error, "No se ha podido insertar el usuario en la base de datos")
                 }
             })
-
+            //Validació de formularis
+            //QuerySelector
             const botonNo = this.crearBotonNo(botonesInferior);
             const observableNo = fromEvent(botonNo, "click")
             observableNo.subscribe(()=> {
@@ -197,6 +199,7 @@ class NewCustomer_view extends View {
     }
 
     mensajeError(input, error, tipo) {
+        //Objectes literals
         let mensajes = {
             "nombre": "Este campo solo admite letras",
             "clientsecret": 'La longitud del "Client Secret" de Strava son 40 carácteres.<br>Te faltan ' + (40 - input.value.length) + ' por introducir.',
@@ -239,7 +242,6 @@ class NewCustomer_view extends View {
     }
 
     comprobarFormularioVacio(botonSi) {
-        console.log("ENTRA EN COMPROBAR")
         //Controlamos mediante el evento keyup que todos los campos sean correctos
         let filtroRepeticion = false;
         let correcto = true;
@@ -252,7 +254,10 @@ class NewCustomer_view extends View {
             }
         });
 
-        //Comprobar que el todo formulario NO está vacío
+        //Comprobar que todo el formulario NO está vacío
+        //Programació funcional
+        //Arrays
+        //Iterables
         const inputsArray = Array.from(document.querySelectorAll("input"))
         let valores = inputsArray.map((elemento) => { return elemento.value.length }).filter(elemento => elemento == 0)
 

@@ -2,7 +2,7 @@ import { router } from "../router/router";
 
 export { ErrorPage }
 
-//Uso de clases
+//MVC
 class ErrorPage {
 
     constructor(error, message){
@@ -15,6 +15,7 @@ class ErrorPage {
         window.document.title = "Error"
         app.container.innerHTML = "";
         app.container.innerHTML =
+        //Template literal
         ` <div class="fadeInDown d-flex justify-content-center align-items-center flex-column">
             <div>
                 <div class="titulo-pagina-error display-4 mt-4">¡Houston, Houston! Tenemos un problema ...</div>

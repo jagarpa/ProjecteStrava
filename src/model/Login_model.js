@@ -16,6 +16,7 @@ class Login_model extends Model {
 
   async login() {
     try {
+      //API REST (Firebase)
       const auth = getAuth();
       const TOKEN = await signInWithEmailAndPassword(auth, this.user, this.password)
       return TOKEN;

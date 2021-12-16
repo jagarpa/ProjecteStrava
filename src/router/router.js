@@ -12,9 +12,9 @@ import { NewCustomer_controller } from "../controller/NewCustomer_controller.js"
 export { router }
 
 function router(route) {
-
+    //LocalStorage
     if (JSON.parse(localStorage.getItem("Token")) === null) route = "#/login"
-
+    //Funcions fletxa
     let options = {
         "#/login": ()=> new Login(),
         "#/test":()=> new TestPage(),

@@ -20,7 +20,6 @@ class CreateUser_view extends View {
             this.animacion.eliminarAnimacionSalida()
             this.animacion.agregarAnimacionEntrada();
             app.container.innerHTML = "";
-
             app.container.innerHTML = `
             <div class="input-group mb-3">
                 <span class="input-group-text" id="email">Email</span>

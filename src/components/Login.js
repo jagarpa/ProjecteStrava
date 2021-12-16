@@ -8,7 +8,7 @@ app.user = "";
 app.pass = "";
 app.errores = "";
 
-//Uso de clases
+//MVC
 class Login {
 
     constructor(){
@@ -26,7 +26,7 @@ class Login {
             app.container.innerHTML = "";
 
         app.container.innerHTML =
-        //Uso de template literal
+        //Template literal
         ` <div class="fadeInDown d-flex justify-content-center align-items-center flex-column">
             <div>
                 <div class="display-2 mt-4"></div>
@@ -54,10 +54,10 @@ class Login {
         //Ocultamos el test
         app.mocha.style.display = "none";
 
-        //Uso de querySelector
+        //QuerySelector
         document.querySelector(".btn-login").addEventListener("click", () => {
             var form = app.container.querySelector("#formulario");
-            //Uso de formData
+            //formData
             var formData = new FormData(form)
             let user = formData.get("user")
             let password = formData.get("pass")

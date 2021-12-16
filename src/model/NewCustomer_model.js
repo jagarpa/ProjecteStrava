@@ -11,14 +11,16 @@ class NewCustomer_model extends Model {
     }
 
     async getCustomers() {
+        //JSON
+        //Promises
         const URL = this.url+"/users.json"
         const RESPONSE = await fetch(URL)
         const DATA = await RESPONSE.json();
         return DATA;
     }
 
+    //API REST (Firebase)
     async setCustomer(item) {
-        
         const idToken = this.token._tokenResponse.idToken
         const response = await fetch(`${this.url}/users.json?auth=${idToken}`, {
             method: "post",

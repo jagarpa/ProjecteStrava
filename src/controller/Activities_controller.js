@@ -3,7 +3,9 @@ import { Activities_model } from "../model/Activities_model.js"
 import { Activities_view } from "../views/Activities_view.js"
 export { Activities_controller }
 
-//Uso de herencia
+//Herència
+//MVC
+//Classes
 class Activities_controller extends Controller {
 
     constructor(user) {

@@ -1,5 +1,5 @@
 import { Model } from "./Model.js"
-import { loadSpinner } from "../functions.js";
+import { loadSpinner } from "../helpers/functions.js";
 import { Animations_control } from "../helpers/Animations_control.js";
 import { ErrorPage } from "../components/ErrorPage.js"
 export { Activities_model }

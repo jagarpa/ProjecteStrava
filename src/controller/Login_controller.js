@@ -3,6 +3,7 @@ import { Login_model } from "../model/Login_model.js"
 import { FrontPage_controller } from "./FrontPage_controller.js";
 import { router } from "../router/router.js";
 export { Login_controller }
+//Mòduls
 
 class Login_controller extends Controller {
 
@@ -18,6 +19,7 @@ class Login_controller extends Controller {
         let model = new Login_model(this.user, this.password);
         const TOKEN = await model.login();
         if (TOKEN!=undefined) {
+            //LocalStorage
             localStorage.setItem("Token", JSON.stringify(TOKEN))
             let token = JSON.parse(localStorage.getItem("Token"));
             this.getView()

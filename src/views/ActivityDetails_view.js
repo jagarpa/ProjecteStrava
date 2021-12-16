@@ -1,6 +1,7 @@
-import { decodePolyline, secondsToString, coordinatesFilter, convertDate } from "../functions.js";
+import { decodePolyline, secondsToString, coordinatesFilter, convertDate } from "../helpers/functions.js";
 import { Animations_control } from "../helpers/Animations_control.js";
 export { ActivityDetails_view }
+//Mòduls
 
 class ActivityDetails_view {
 
@@ -48,8 +49,9 @@ class ActivityDetails_view {
       const latitudeActivity = coordinates_decoded[coordinatesDivisor / 2].latitude;
       const longitudeActivity = coordinates_decoded[coordinatesDivisor / 2].longitude;
       const coordinatesFiltered = coordinatesFilter(coordinates_decoded);
-
+      //Modificar el nodes
       //Template literal
+      //Inyección de código en el DOM
       const src = `L.mapbox.accessToken = 'pk.eyJ1IjoiZGpqYXZpZyIsImEiOiJja3VyZmI0ZnUwd3llMnFwNXp6a2c4bWc1In0.GHFEHp5qLR_8GluAxjGMLA'; 
           var map = L.mapbox.map('map')
           .setView([${latitudeActivity}, ${longitudeActivity}], 12)

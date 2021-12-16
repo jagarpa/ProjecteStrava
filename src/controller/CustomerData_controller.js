@@ -4,6 +4,11 @@ import { Activities_model } from "../model/Activities_model.js"
 
 export { CustomerData_controller }
 
+//Herència
+//MVC
+//Classes
+//Fetch
+
 class CustomerData_controller extends Controller {
 
     constructor() {
@@ -19,7 +24,6 @@ class CustomerData_controller extends Controller {
     }
 
     getView(activities) {
-        console.log(activities)
         new CustomerData_view(this.customer, activities)
     }
 

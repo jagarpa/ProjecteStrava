@@ -1,6 +1,6 @@
 import { View } from "./View.js"
-import { convertDate } from "../functions.js";
-import { secondsToString } from "../functions.js";
+import { convertDate } from "../helpers/functions.js";
+import { secondsToString } from "../helpers/functions.js";
 import btt from "../images/btt.png";
 import road from "../images/road.png";
 import running from "../images/running.png"
@@ -183,7 +183,7 @@ class Activities_view extends View {
     }
 
     obtenerLimite(index) {
-
+        //Funcions fletxa
         var limites = {
             0: () => [0, 12],
             1: () => [12, 24],

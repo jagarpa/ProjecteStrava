@@ -18,7 +18,6 @@ class Customers_model extends Model {
             try {
              const response = await fetch(`${this.url}/users.json?auth=${idToken}`);
              const data = await response.json();
-             console.log(data)
              observer.next(data);
              observer.complete();
             } catch (err) {
