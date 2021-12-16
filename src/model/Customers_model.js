@@ -11,13 +11,14 @@ class Customers_model extends Model {
         this.token = JSON.parse(localStorage.getItem("Token"));
     }
 
+    //Programació reactiva
     async getCustomers() {
         const idToken = this.token._tokenResponse.idToken
         const fetchStream = new Observable(async (observer) => {
             try {
-                console.log("ENTRA")
-            const response = await fetch(`${this.url}/users.json?auth=${idToken}`);
+             const response = await fetch(`${this.url}/users.json?auth=${idToken}`);
              const data = await response.json();
+             console.log(data)
              observer.next(data);
              observer.complete();
             } catch (err) {

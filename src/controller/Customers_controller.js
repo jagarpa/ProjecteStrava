@@ -11,13 +11,12 @@ class Customers_controller extends Controller {
     }
 
     async getModel() {
+        
         let model = new Customers_model();
-        //const CUSTOMERS = await model.getCustomers();  
         const observable = await model.getCustomers();
         observable.subscribe((data)=> {
             this.getView(data)
         })
-        //this.getView(CUSTOMERS)
     }
 
     getView(data) {

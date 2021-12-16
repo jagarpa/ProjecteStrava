@@ -12,10 +12,10 @@ app.mocha = "";
 app.token = "";
 app.config = "";
 
+//Funcions autoinvocades
 (() => {
     document.addEventListener("DOMContentLoaded", function domLoad() {
 
-        //mocha.run();
         //Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyB0Pj3Z81li1LpKrAk4TRSB2LgJ-o2Qdzs",
@@ -29,7 +29,7 @@ app.config = "";
           
         app.config = firebaseConfig
     
-          // Initialize Firebase
+        // Initialize Firebase
         const appFirebase = initializeApp(firebaseConfig);
     
         app.container = document.querySelector("#container");
@@ -37,8 +37,6 @@ app.config = "";
         
         router("#/login")
     });
-
-    //window.location.hash = ""
   
     window.addEventListener("hashchange", () => router(window.location.hash));
   })();

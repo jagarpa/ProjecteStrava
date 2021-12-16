@@ -13,7 +13,7 @@ class Activities_model extends Model {
     }
 
     async getActivities() {
-        //Creación de un objeto literal utilizando los datos de otro objeto
+        //Objectes literals
         const user = {
             client_id: this.user.client_id,
             client_secret: this.user.client_secret,
@@ -21,11 +21,11 @@ class Activities_model extends Model {
             grant_type: 'refresh_token'
         }
 
-        //Uso de setTimeout para controlar las animaciones y cargar el spinner de carga
-        //Uso de fetch y async await
+        //Promises
+        //Fetch
+        //JSON
         try {
             this.animacion.agregarAnimacionSalida();
-
             setTimeout(() => {
                 this.animacion.eliminarAnimacionSalida();
                 this.animacion.agregarAnimacionSalidaSpinner();

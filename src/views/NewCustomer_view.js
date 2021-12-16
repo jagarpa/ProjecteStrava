@@ -111,11 +111,12 @@ class NewCustomer_view extends View {
                 const controller = new NewCustomer_controller()
                 try {
                     //Agregamos a la base de datos
-                    controller.setModel(item);
+                    const confirmacion = controller.setModel(item);
                     //Retrasamos la redirección a Clientes para que a firebase le de tiempo a insertar el nuevo usuario
                     //en la base de datos y que al redirigir, nos lo muestre ya en la lista de clientes
                     setTimeout(() => {
-                        router('#/customers')
+                        router("#/customers")
+                        window.location.hash = "#/customers"
                     }, 500);
                 } catch (error) {
                     new ErrorPage(error, "No se ha podido insertar el usuario en la base de datos")
@@ -259,7 +260,5 @@ class NewCustomer_view extends View {
             filtroRepeticion = true;
             botonSi.style.display = "block";
         }
-
     }
-
 }

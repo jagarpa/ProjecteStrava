@@ -8,7 +8,8 @@ class Delete {
         this.url = app.config.databaseURL;
         this.token = JSON.parse(localStorage.getItem("Token"));
     }
-
+    //API REST
+    //Firebase
     async delete(id) {
         const idToken = this.token._tokenResponse.idToken
         try {

@@ -19,8 +19,13 @@ class NewCustomer_controller extends Controller {
 
     async setModel(item) {
         let customerModel = new NewCustomer_model();
-        const prueba = await customerModel.setCustomer(item)
-        return prueba;
+        const data = await customerModel.setCustomer(item)
+        return data;
+    }
+
+    async updateModel(item) {
+        let customerModel = new NewCustomer_model();
+        const data = await customerModel.updateCustomer(item)
     }
 
     getView() {

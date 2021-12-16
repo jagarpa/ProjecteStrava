@@ -11,6 +11,7 @@ class CustomerData_view extends View {
         this.customer = customer;
         this.activities = activities
         this.animacion = new Animations_control();
+        this.chart = "";
         this.renderView()
     }
 
@@ -34,6 +35,7 @@ class CustomerData_view extends View {
                 let columnaIzquierda = document.createElement("div")
                 columnaIzquierda.classList.add("col-5")
                 divPrincipal.append(columnaIzquierda)
+                //Template literal
                 columnaIzquierda.innerHTML = 
                 `<p class="fs-3 text-end">Información de ${this.customer.name}</p>
                 <ol class="list-group">
@@ -74,13 +76,6 @@ class CustomerData_view extends View {
                 </div>
                 </li>
               </ol>`
-
-/*                 const boton = document.querySelector(".prueba")
-                const prueba = fromEvent(boton, "click")
-                prueba.subscribe(()=> {
-                    let hola = document.querySelector('#myChart')
-                    this.crearGrafico("")
-                }) */
                 
                 let columnaDerecha = document.createElement("div")
                 columnaDerecha.classList.add("col-7")
@@ -92,31 +87,40 @@ class CustomerData_view extends View {
                 grafico.style.width = "100%"
                 grafico.style.height = "445px"
                 columnaDerecha.append(grafico)
-
-                this.crearGrafico("fecha")
+                
 
                 let divInferior = document.createElement("div")
-                divInferior.classList.add("container")
+                divInferior.classList.add("container", "mt-4")
                 app.container.append(divInferior)
 
-                let boton = `<button class="btn btn-warning bu">Desnivel acumulado</button>`
-                divInferior.append(boton)
-                divInferior.innerHTML = boton;
-                let bu = document.querySelector(".bu")
-                bu.addEventListener("click", ()=> {
-                    let grafico = document.querySelector('#myChart');
-                    grafico.innerHTML = ""
-                    this.crearGrafico("desnivel")
+                this.chart = this.crearGraficoCantidadActividades()
+
+                let btn1 = document.createElement("a")
+                btn1.classList.add("btn-login", "mt-4", "m-1", "desnivel")
+                btn1.innerHTML = "Mostrar desnivel positivo"
+                divInferior.append(btn1)
+                let button = document.querySelector(".desnivel")
+                button.addEventListener("click", ()=> {
+                    this.chart.destroy()
+                    this.chart = this.crearGraficoDesnivelPositivo();
                 })
-                
+
+                let btn2 = document.createElement("a")
+                btn2.classList.add("btn-login", "mt-4", "m-1", "cantidad")
+                btn2.innerHTML = "Mostrar cantidad actividades"
+                divInferior.append(btn2)
+                let button2 = document.querySelector(".cantidad")
+                button2.addEventListener("click", ()=> {
+                    this.chart.destroy()
+                    this.chart = this.crearGraficoCantidadActividades();
+                })
+
             }, 100);
         }, 1000);
     }
 
-    crearGrafico(valor) {
-
+    crearGraficoDesnivelPositivo() {
         const labels = this.getListaMeses()
-
         let enero = []
         let febrero = []
         let marzo = []
@@ -134,16 +138,8 @@ class CustomerData_view extends View {
             const element = this.activities[k];
 
             let info;
-            switch (valor) {
-                case "desnivel":
-                    info = element.total_elevation_gain
-                    break;
-                case "fecha":
-                    info = element.start_date_local
-                    break;
-                default:
-                    break;
-            }
+            info = element.total_elevation_gain
+
             let fecha = element.start_date_local
 
             if (fecha.includes("2021-")) {
@@ -185,16 +181,18 @@ class CustomerData_view extends View {
                     diciembre.push(info)
             }
         }
-        console.log(noviembre)
+
         const data = {
             labels: labels,
             datasets: [
                 {
-                    label: 'Actividades mensuales',
-                    data: [enero.length, febrero.length, marzo.length, abril.length, mayo.length, junio.length, julio.length, agosto.length, septiembre.length, octubre.length, noviembre.length, diciembre.length],
+                    label: 'Desnivel positivo mensual',
+                    //Programació funcional
+                    data: [enero.reduce((a, b) => a + b, 0), febrero.reduce((a, b) => a + b, 0), marzo.reduce((a, b) => a + b, 0), abril.reduce((a, b) => a + b, 0), mayo.reduce((a, b) => a + b, 0), junio.reduce((a, b) => a + b, 0), 
+                        julio.reduce((a, b) => a + b, 0), agosto.reduce((a, b) => a + b, 0), septiembre.reduce((a, b) => a + b, 0), octubre.reduce((a, b) => a + b, 0), noviembre.reduce((a, b) => a + b, 0), diciembre.reduce((a, b) => a + b, 0)],
                     backgroundColor: [
                      '#434343'
-                    ],
+                    ], 
                     borderColor: [
                         '#434343'
                     ],
@@ -206,10 +204,103 @@ class CustomerData_view extends View {
         const config = {
             type: 'line',
             data: data,
-            options: {}
+            options: {responsive: true,  maintainAspectRatio: false}
         };
 
-        const myChart = new Chart(
+        return new Chart(
+            document.querySelector('#myChart').getContext("2d"),
+            config
+        );
+    }
+
+    crearGraficoCantidadActividades() {
+        const labels = this.getListaMeses()
+        let enero = []
+        let febrero = []
+        let marzo = []
+        let abril = []
+        let mayo = []
+        let junio = []
+        let julio = []
+        let agosto = []
+        let septiembre = []
+        let octubre = []
+        let noviembre = []
+        let diciembre = []
+
+        for (let k = 0; k < this.activities.length; k++) {
+            const element = this.activities[k];
+
+            let info;
+            info = element.start_date_local
+
+            let fecha = element.start_date_local
+
+            if (fecha.includes("2021-")) {
+
+                if (fecha.includes("-01-"))
+                    enero.push(info)
+
+                if (fecha.includes("-02-"))
+                    febrero.push(info)
+
+                if (fecha.includes("-03-"))
+                    marzo.push(info)
+
+                if (fecha.includes("-04-"))
+                    abril.push(info)
+
+                if (fecha.includes("-05-"))
+                    mayo.push(info)
+
+                if (fecha.includes("-06-"))
+                    junio.push(info)
+
+                if (fecha.includes("-07-"))
+                    julio.push(info)
+
+                if (fecha.includes("-08-"))
+                    agosto.push(info)
+
+                if (fecha.includes("-09-"))
+                    septiembre.push(info)
+
+                if (fecha.includes("-10-"))
+                    octubre.push(info)
+
+                if (fecha.includes("-11-"))
+                    noviembre.push(info)
+
+                if (fecha.includes("-12-"))
+                    diciembre.push(info)
+            }
+        }
+
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Actividades mensuales',
+                    data: [enero.length, febrero.length, marzo.length, abril.length, mayo.length, junio.length, julio.length, agosto.length, septiembre.length, octubre.length, noviembre.length, diciembre.length],
+                    backgroundColor: [
+                     '#434343'
+                    ], 
+                    borderColor: [
+                        '#434343'
+                    ],
+                    borderWidth: 3
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {responsive: true,  maintainAspectRatio: false}
+        };
+
+
+        return new Chart(
             document.querySelector('#myChart').getContext("2d"),
             config
         );

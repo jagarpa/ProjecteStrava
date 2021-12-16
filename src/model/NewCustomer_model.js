@@ -28,4 +28,5 @@ class NewCustomer_model extends Model {
         const data = await response.json();
         return data;
     }
+
 }

@@ -45,7 +45,7 @@ class Customers_view extends View {
         const accordionBody = this.crearAccordionBody(accordionPlaceHolder);
         const botonActividades = this.crearBotonActividades(accordionBody, element);
         const botonDatos= this.crearBotonDatos(accordionBody, element);
-        const botonEditar = this.crearBotonEditar(accordionBody, element);
+        //const botonEditar = this.crearBotonEditar(accordionBody, element, index);
         const botonEliminar = this.crearBotonEliminar(accordionBody, element, index); 
       })
     }, 1000);
@@ -162,27 +162,28 @@ class Customers_view extends View {
     accordionBody.append(buttonDatosCliente);
   }
 
-  crearBotonEditar(accordionBody, element) {
+  /* crearBotonEditar(accordionBody, element, index) {
+    let array = Object.entries(this.data)
     let buttonEditar = document.createElement("a");
     buttonEditar.classList.add("btn-editar", "m-2")
     buttonEditar.innerHTML = "Editar"
     buttonEditar.href = "#/editarcliente"
     const obsEditar = fromEvent(buttonEditar, 'click')
     obsEditar.subscribe(() => {
-      localStorage.setItem("User", JSON.stringify(element))
+      localStorage.setItem("UserId", JSON.stringify(array[index][0]))
     })
     accordionBody.append(buttonEditar);
   }
-
+ */
   crearBotonEliminar(accordionBody, element, index) {
-
+    let array = Object.entries(this.data)
     let buttonEliminar = document.createElement("a");
         buttonEliminar.classList.add("btn-eliminar", "m-2")
         buttonEliminar.innerHTML = "Eliminar cliente"
         accordionBody.append(buttonEliminar);
         const obsEliminar = fromEvent(buttonEliminar, 'click')
         obsEliminar.subscribe(() => {
-          const id = this.data[index][0]
+          const id = array[index][0]
           const borrar = new Delete();
           borrar.delete(id);
           setTimeout(() => {
