@@ -3,16 +3,16 @@ Se trata de una aplicación la cual permita a un entrenador personal poder reali
 
 # API, librerias y frameworks utilizados
 Para este proyecto se ha utilizado:
-- Npm
-- Webpack
-- Rxjs
-- Chart.js
-- Bootstrap 5
-- MapBox
-- Strava API
-- Firebase
-- Mocha
-- Chai
+- Npm (Gestor de paquetes de Javascript)
+- Webpack (Compilación del proyecto)
+- Rxjs (Librería de programación reactiva para Javascript)
+- Chart.js (Librería de JavaScript que utiliza el canvas de HTML5 para mostrar gráficos personalizados)
+- Bootstrap 5 (Framework front-end utilizado para desarrollar aplicaciones web)
+- MapBox (Proveedor de mapas gratuito, alternativa a GoogleMaps)
+- Strava API (API de la aplicación deportiva Strava)
+- Firebase (Nuestro "backend" para este proyecto. Autentificación y base de datos)
+- Mocha (Framework de pruebas de JavaScript)
+- Chai (Es un librería de aserciones, la cual se puede emparejar con cualquier marco de pruebas de Javascript, como Mocha).
 
 # Estructura
 Aprovechando el "backend" proporcionado por Firebase, se ha implementado un MVC, donde el controlador llama al modelo para solicitar los datos y luego pasa los datos a la vista.
