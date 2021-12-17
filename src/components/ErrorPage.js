@@ -26,8 +26,13 @@ class ErrorPage {
                 </div>
             </div>
             <div class="d-flex justify-content-around align-items-center grupo-botones-login">
-                <a href="#/login" class="btn-login animate__animated animate__zoomIn">Volver</a>
+                <a class="btn-login volver animate__animated animate__zoomIn">Volver</a>
             </div>
         </div>`;
+
+        let volver = document.querySelector(".volver")
+        volver.addEventListener("click", ()=> {
+            router("#/login")
+        })
     }  
 }
