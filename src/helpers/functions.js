@@ -44,6 +44,7 @@ export function coordinatesFilter(coordinates) {
 }
 
 //Convertir segundos a formato HORAS:MINUTOS:SEGUNDOS
+//Objectes predefinits
 export function secondsToString(seconds) {
   let hour = Math.floor(seconds / 3600);
   hour = (hour < 10) ? '0' + hour : hour;
