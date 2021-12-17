@@ -8,6 +8,7 @@ import { mensajeError } from '../components/TestPage.js';
 let assert = chai.assert;
 
 mocha.setup('bdd');
+mocha.cleanReferencesAfterRun(false)
 
 it ('Funcionamiento del Login', async ()=> {
     assert.isObject(await firebaseLogin())
@@ -22,4 +23,8 @@ it ('Mensaje de error retornado correctamente', ()=> {
     let mensaje = mensajeError("nombre");
     expect(mensaje).to.equal("Este campo solo admite letras")
 })
+
+
+
+
 

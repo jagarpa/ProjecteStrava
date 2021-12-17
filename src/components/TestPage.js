@@ -18,7 +18,6 @@ export async function firebaseLogin() {
     }
 }
 
-//Programació funcional (Funcions pures)
 export function decodePolyline() {
 
     let encoded = 'gmllFhneCMVUIGKoAa@a@B]G_AAc@JQ@eB]y@Wa@Gk@Ec@?a@C{BPuCXc@BcEd@m@@m@Eg@Ii@UaAAa@NYTMBe@DSNO^MP}A`B}@nAOLg@|@eBbCEJc@h@WXGT@^Nr@`@lCd@jCj@xDLlAd@~CPfBEX?f@IPGBW?}@LEGCi@Dq@OqCYqBq@iCc@iAMe@Iy@EwAGy@UgBc@wAYsA]aAs@qCGCE?y@Rm@Bu@Jo@@_CQm@IYM]e@yAiCg@u@gAoB_CuDs@qAc@m@oA{Bc@m@oAqBi@cAOa@ASB[`A}B\aBFORURKRQb@e@VMNALBr@THC?]Ki@Da@?UQg@?EPMfA[JO?WEKcAmB{BmGgAkCG[LUrBkBFA@CASUa@Wo@Kg@Go@Fa@FQv@cBr@kBp@{AFGTEVFnAbAVRdBnB~AxAhAfAbBrAvAz@r@h@t@|@Rh@NRXTRF\@pAKp@B^GZKzD{BZUvAu@XMn@K^Q`@W|Am@|@o@`B{@nDwBtAq@dBgAX?LDRNT`@t@jC`@~@VZd@TPPxAfDNb@h@~BnArCj@dAd@dBVt@Xd@Rf@NRd@hAt@hAh@jAl@`ADP\`@Lp@BVPhD\rBb@~A`@hADX\bAN\Hf@J^\v@T`@E^[\i@HUJOAIDGHAF@d@FLT`BMh@KBIGi@Ee@SIIG?MLCHQNM^OPKt@@J'

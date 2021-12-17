@@ -13,7 +13,7 @@ export { router }
 
 function router(route) {
     //LocalStorage
-    if (JSON.parse(localStorage.getItem("Token")) === null) route = "#/login"
+    if (JSON.parse(localStorage.getItem("Token")) === null && route!="#/test") route = "#/login"
     //Funcions fletxa
     let options = {
         "#/login": ()=> new Login(),

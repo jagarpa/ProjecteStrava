@@ -41,6 +41,9 @@ class Login {
                 <a class="btn-login animate__animated animate__zoomIn">Login</a>
                 <a class="btn-nuevo-usuario" type="button">Nuevo usuario</a>
             </div>
+            <div class="d-flex justify-content-around align-items-center grupo-botones-login">
+            <a id="botonTest" href="#/test" class="btn btn-outline-secondary animate__animated animate__zoomIn">Visualizar Tests</a>
+            </div> 
         </div>`;
 
         //Ocultamos el menú principal para no visualizarlo hasta que el usuario no haga login
@@ -61,15 +64,12 @@ class Login {
         })
 
         //Boton de test
-        //const botonTest = document.querySelector("#botonTest")
+        const botonTest = document.querySelector("#botonTest")
         //Boton de test
-        /* <div class="d-flex justify-content-around align-items-center grupo-botones-login">
-        <a id="botonTest" href="#/test" class="btn btn-outline-secondary animate__animated animate__zoomIn">Visualizar Tests</a>
-        </div> */
-        
-        /* const observableTest = fromEvent(botonTest, "click")
-        observableTest.subscribe(()=> router('#/test')) */
 
+/*         const observableTest = fromEvent(botonTest, "click")
+        observableTest.subscribe(()=> router('#/test')) 
+ */
         /* ----------- ACTIVAR PARA PODER INTRODUCIR UN NUEVO USUARIO EN FIREBASE ------------- */
             document.querySelector(".btn-nuevo-usuario").style.display = "none";
         /* document.querySelector(".btn-nuevo-usuario").addEventListener("click", () => {

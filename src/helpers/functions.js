@@ -1,5 +1,6 @@
 //Decodificar la información polyline obtenida de la actividad
 //Programacio funcional
+//Funcions
 export function decodePolyline(encoded) {
   let points = []
   let index = 0, len = encoded.length;
